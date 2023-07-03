@@ -20,15 +20,15 @@ $response = curl_exec($curl);
 
 curl_close($curl);
 $data = json_decode($response, true);
-
+//var_dump($data); die;
 $contador = 1;
-$hoy = date("Y-m-d");
-$limite = date("Y-m-d", strtotime("-2 days"));
+//$hoy = date("Y-m-d");
+//$limite = date("Y-m-d", strtotime("+2 days"));
 
 usort($data["Detalles"], function($a, $b) {
     return strtotime($a["fecha_dev"]) - strtotime($b["fecha_dev"]);
 });
-//var_dump($hoy); die;
+//var_dump($limite); die;
 ?>
 
 <!doctype html>
@@ -97,8 +97,7 @@ usort($data["Detalles"], function($a, $b) {
                                                 <tbody>
                                                 <?php foreach($data["Detalles"] as $circulacion): ?>
                                                     <?php 
-                                                        $fechaDev = date("Y-m-d", strtotime($circulacion["fecha_dev"])); // Convertir la fecha de devolución a formato 'Y-m-d'
-                                                        if ($circulacion["estado_aceptado"] == 1 && $fechaDev <= $hoy && $fechaDev >= $limite): ?>
+                                                        if ($circulacion["estado_aceptado"] == 1): ?>
                                                         <tr> 
                                                             <td style="text-align: center"> <?= $contador++?> </td> 
                                                             <td style="text-align: center"> <?= $circulacion['cod_libro']?> </td>

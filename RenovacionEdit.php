@@ -31,7 +31,7 @@
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
-            CURLOPT_URL => 'https://crai.informaticapp.com/circulacion',
+            CURLOPT_URL => 'https://crai.informaticapp.com/circulacion/'.$_GET['idcirculacion'],
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => '',
             CURLOPT_MAXREDIRS => 10,
@@ -40,9 +40,9 @@
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => 'GET',
             CURLOPT_HTTPHEADER => array(
-              'Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VPbUt6dlQ2ajJ6aGsvbVZkbnpvd1BSMk5KRlJSa0txOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlTjN4OW82Mk1xVFpTVURtdGV5SmxXVkQ0NVJUQ3NZQw=='
+                'Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VPbUt6dlQ2ajJ6aGsvbVZkbnpvd1BSMk5KRlJSa0txOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlTjN4OW82Mk1xVFpTVURtdGV5SmxXVkQ0NVJUQ3NZQw=='
             ),
-          ));
+        ));
 
         $response = curl_exec($curl);
 
@@ -97,7 +97,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="icon" href="./dist/img/upeuLogo.png">
-        <title>Editar Categoría | CRAI-Tarapoto</title>
+        <title>Editar Renovación | CRAI-Tarapoto</title>
         <?php require "./resource/head.php"; ?>
     </head>
     <body class="hold-transition sidebar-mini sidebar-collapse layout-fixed layout-navbar-fixed ">
@@ -112,7 +112,7 @@
                     <div class="container-fluid">
                         <div class="row mb-2">
                             <div class="col-sm-6">
-                                <h1 class="m-0">Editar Categoría</h1>
+                                <h1 class="m-0">Editar Renovación</h1>
                             </div>
                            
                             <div class="col-sm-6">
@@ -120,7 +120,7 @@
                                     <li class="breadcrumb-item">
                                         <a href="index.php">Home</a>
                                     </li>
-                                    <li class="breadcrumb-item active">Editar Categoría</li>
+                                    <li class="breadcrumb-item active">Editar Renovación</li>
                                 </ol>
                             </div>                        
                         </div>
@@ -132,7 +132,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="card card-primary card-outline">
-                                    <h3 class="text-center mt-4">Editar Categoría</h3>
+                                    <h3 class="text-center mt-4">Editar Renovación</h3>
                                     <div class="container">
                                         <form method="post" class="col-xl-8 offset-2">
                                             <input type="hidden" name="idcirculacion" id="idcirculacion" value="<?= $data["Detalle"]['idcirculacion'] ?>">
@@ -157,12 +157,12 @@
 
                                             <div class="form-group">
                                                 <label for="fecha_adq">Fecha de Adquisición:</label>
-                                                <input type="date" class="form-control" name="fecha_adq" id="fecha_adq" value="<?= $data["Detalles"]["0"]['fecha_adq'] ?>">
+                                                <input type="date" class="form-control" name="fecha_adq" id="fecha_adq" value="<?= $data["Detalles"]['fecha_adq'] ?>">
                                             </div>
 
                                             <div class="form-group">
                                                 <label for="fecha_dev">Fecha de Devolución:</label>
-                                                <input type="date" class="form-control" name="fecha_dev" id="fecha_dev" value="<?= $data["Detalles"]["0"]['fecha_dev'] ?>">
+                                                <input type="date" class="form-control" name="fecha_dev" id="fecha_dev" value="<?= $data["Detalles"]['fecha_dev'] ?>">
                                             </div>
 
                                             <button type="submit" class="btn btn-success"><i class="fas fa-save"></i> Guardar</button>
