@@ -22,6 +22,13 @@ curl_close($curl);
 $data = json_decode($response, true);
 //var_dump($data); die;
 $contador = 1;
+//$hoy = date("Y-m-d");
+//$limite = date("Y-m-d", strtotime("-3 days"));
+
+usort($data["Detalles"], function($a, $b) {
+    return strtotime($a["fecha_dev"]) - strtotime($b["fecha_dev"]);
+});
+//var_dump($hoy); die;
 ?>
 
 <!doctype html>
@@ -30,7 +37,7 @@ $contador = 1;
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="icon" href="./dist/img/upeuLogo.png">
-        <title>Préstamos | CRAI-Tarapoto</title>
+        <title>Renovación de Préstamo | CRAI-Tarapoto</title>
         <?php require "./resource/head.php"; ?>
     </head>
     <body class="hold-transition sidebar-mini sidebar-collapse layout-fixed layout-navbar-fixed ">
@@ -45,7 +52,7 @@ $contador = 1;
                     <div class="container-fluid">
                         <div class="row mb-2">
                             <div class="col-sm-6">
-                                <h1 class="m-0">Préstamos</h1>
+                                <h1 class="m-0">Renovación de Préstamo</h1>
                             </div>
                            
                             <div class="col-sm-6">
@@ -53,7 +60,7 @@ $contador = 1;
                                     <li class="breadcrumb-item">
                                         <a href="index.php">Home</a>
                                     </li>
-                                    <li class="breadcrumb-item active">Préstamos</li>
+                                    <li class="breadcrumb-item active">Renovación de Préstamo</li>
                                 </ol>
                             </div>                        
                         </div>
@@ -67,7 +74,7 @@ $contador = 1;
                             <div class="col-12">
                                 <div class="card card-primary card-outline">
                                     <div class="card-header">
-                                        <a href="PrestamosReg.php" class="btn btn-primary">Registrar</a>                     
+                                        <!-- <a href="PrestamosReg.php" class="btn btn-primary">Registrar</a> -->                    
                                     </div>
                                     <!-- /.card-header -->
                                     <div class="card-body">
@@ -84,12 +91,13 @@ $contador = 1;
                                                         <th scope="col" style="text-align: center">Fecha de Adquisición</th>
                                                         <th scope="col" style="text-align: center">Fecha de Devolución</th>
                                                         <th scope="col" style="text-align: center">Estado</th>
-                                                <!--    <th scope="col" style="text-align: center" colspan="2">Operaciones</th>   -->
+                                                        <th scope="col" style="text-align: center">Operaciones</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                 <?php foreach($data["Detalles"] as $circulacion): ?>
-                                                    <?php if ($circulacion["estado_aceptado"] == 1): ?>
+                                                    <?php 
+                                                        if ($circulacion["estado_aceptado"] == 1): ?>
                                                         <tr> 
                                                             <td style="text-align: center"> <?= $contador++?> </td> 
                                                             <td style="text-align: center"> <?= $circulacion['cod_libro']?> </td>
@@ -100,10 +108,10 @@ $contador = 1;
                                                             <td style="text-align: center"> <?= $circulacion['fecha_adq']?> </td>
                                                             <td style="text-align: center"> <?= $circulacion['fecha_dev']?> </td>
                                                             <td style="text-align: center">
-                                                                <span class="text-center badge badge-danger">Prestado</span>
+                                                                <span class="text-center badge badge-success">En proceso</span>
                                                             </td>
-                                                <!--        <td style="text-align: center"><a href="PrestamosEdit.php?idcirculacion=<?= $circulacion['idcirculacion'] ?>" class="btn btn-warning"><i class="fas fa-edit"></i></a></td>
-                                                            <td style="text-align: center"><a href="PrestamosElim.php?idcirculacion=<?= $circulacion['idcirculacion'] ?>" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a></td> -->
+                                                            <td style="text-align: center"><a href="RenovacionEdit.php?idcirculacion=<?= $circulacion['idcirculacion'] ?>" class="btn btn-warning"><i class="fas fa-edit"></i></a></td>
+                                                <!--        <td style="text-align: center"><a href="DevolucionElim.php?idcirculacion=<?= $circulacion['idcirculacion'] ?>" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a></td> -->
                                                         </tr>
                                                     <?php endif; ?>
                                                 <?php endforeach; ?>

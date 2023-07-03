@@ -29,7 +29,7 @@
         curl_close($curl);
         $data = json_decode($response, true);
         header("Location: Prestamos.php");
-        
+
     }else{
         
         $curl = curl_init();
@@ -143,14 +143,6 @@
                                             <div class="form-group">
                                                 <label for="fecha_dev">Fecha de devolución:</label>
                                                 <input type="date" name="fecha_dev" class="form-control" id="fecha_dev" required>
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label for="estado_libro">Estado del libro:</label>
-                                                <select name="estado_libro" class="form-control" id="estado_libro">
-                                                    <option value="1">Disponible</option>
-                                                    <option value="2">No disponible</option>
-                                                </select>
                                             </div>
 
                                             <button type="submit" class="btn btn-success"><i class="fas fa-save"></i> Guardar</button>

@@ -80,7 +80,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="icon" href="./dist/img/upeuLogo.png">
-        <title>Editar Categoría | CRAI-Tarapoto</title>
+        <title>Editar Evidencia de Compra | CRAI-Tarapoto</title>
         <?php require "./resource/head.php"; ?>
     </head>
     <body class="hold-transition sidebar-mini sidebar-collapse layout-fixed layout-navbar-fixed ">
@@ -95,7 +95,7 @@
                     <div class="container-fluid">
                         <div class="row mb-2">
                             <div class="col-sm-6">
-                                <h1 class="m-0">Editar Categoría</h1>
+                                <h1 class="m-0">Editar Evidencia de Compra</h1>
                             </div>
                            
                             <div class="col-sm-6">
@@ -103,7 +103,7 @@
                                     <li class="breadcrumb-item">
                                         <a href="index.php">Home</a>
                                     </li>
-                                    <li class="breadcrumb-item active">Editar Categoría</li>
+                                    <li class="breadcrumb-item active">Editar Evidencia de Compra</li>
                                 </ol>
                             </div>                        
                         </div>
@@ -115,7 +115,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="card card-primary card-outline">
-                                    <h3 class="text-center mt-4">Editar Categoría</h3>
+                                    <h3 class="text-center mt-4">Editar Evidencia de Compra</h3>
                                     <div class="container">
                                         <form method="post" class="col-xl-8 offset-2">
                                             <input type="hidden" name="idevidencia" id="idevidencia" value="<?= $data["Detalles"]['idevidencia'] ?>">

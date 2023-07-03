@@ -21,6 +21,7 @@ $response = curl_exec($curl);
 curl_close($curl);
 $cat_li = json_decode($response, true);
 //var_dump($cat_li); die;
+$contador = 1;
 ?>
 
 <!doctype html>
@@ -85,7 +86,7 @@ $cat_li = json_decode($response, true);
                                                 <tbody>
                                                     <?php foreach($cat_li["Detalles"] as $categoria): ?>
                                                     <tr> 
-                                                        <td style="text-align: center"> <?= $categoria['categoria_id']?> </td> 
+                                                        <td style="text-align: center"> <?= $contador++?> </td> 
                                                         <td style="text-align: center"> <?= $categoria['cog_categoria']?> </td>
                                                         <td> <?= $categoria['descripcion']?> </td>
                                                         <td style="text-align: center">

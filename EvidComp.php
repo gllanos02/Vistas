@@ -20,6 +20,7 @@ $response = curl_exec($curl);
 
 curl_close($curl);
 $data = json_decode($response, true);
+$contador = 1;
 
 ?>
 
@@ -87,7 +88,7 @@ $data = json_decode($response, true);
                                                 <tbody>
                                                     <?php foreach($data["Detalles"] as $comp): ?>
                                                     <tr> 
-                                                        <td style="text-align: center"> <?= $comp['idevidencia']?> </td> 
+                                                        <td style="text-align: center"> <?= $contador++?> </td> 
                                                         <td> <?= $comp['nombre']?> </td>
                                                         <td> <?= $comp['razon_social']?> </td>
                                                         <td style="text-align: center"> <?= $comp['fecha']?> </td>

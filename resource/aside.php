@@ -228,7 +228,7 @@
             
                 <!-- Devolución de Libros -->
                 <li class="nav-item ">
-                  <a href="devolucion" class="nav-link pl-2" id="lOtroIngreso">             
+                  <a href="devolucion.php" class="nav-link pl-2" id="lOtroIngreso">             
                     <i class="nav-icon fas fa-book"></i>
                     <p>Devolución</p>
                   </a>
@@ -236,7 +236,7 @@
 
                 <!-- Renovación de Libros -->
                 <li class="nav-item ">
-                  <a href="renovacion" class="nav-link pl-2" id="lOtroIngreso">             
+                  <a href="renovacion.php" class="nav-link pl-2" id="lOtroIngreso">             
                     <i class="nav-icon fas fa-history"></i>
                     <p>Renovación</p>
                   </a>

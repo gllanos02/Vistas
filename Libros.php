@@ -21,6 +21,8 @@ $response = curl_exec($curl);
 curl_close($curl);
 $data = json_decode($response, true);
 //var_dump($data); die;
+
+$contador = 1;
 ?>
 
 <!doctype html>
@@ -94,7 +96,7 @@ $data = json_decode($response, true);
                                                 <tbody>
                                                     <?php foreach($data["Detalles"] as $libro): ?>
                                                     <tr> 
-                                                        <td style="text-align: center"> <?= $libro['idlibros']?> </td> 
+                                                        <td style="text-align: center"> <?= $contador++?> </td> 
                                                         <td style="text-align: center"> <?= $libro['cod_libro']?> </td>
                                                         <td> <?= $libro['descripcion']?> </td>
                                                         <td> <?= $libro['titulo']?> </td>

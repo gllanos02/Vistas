@@ -20,5 +20,5 @@ $response = curl_exec($curl);
 
 curl_close($curl);
 $data = json_decode($response, true);
-header("Location: Prestamos.php");
+header("Location: Devolucion.php");
 ?>

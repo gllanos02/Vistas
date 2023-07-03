@@ -3,7 +3,7 @@
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
-            CURLOPT_URL => 'https://crai.informaticapp.com/circulacion/'.$_GET['idevidencia'],
+            CURLOPT_URL => 'https://crai.informaticapp.com/circulacion/'.$_GET['idcirculacion'],
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => '',
             CURLOPT_MAXREDIRS => 10,
@@ -15,10 +15,8 @@
                 'id_estudiante='.$_POST["id_estudiante"].
                 '&id_lib='.$_POST["id_lib"].
                 '&fecha_adq='.$_POST["fecha_adq"].
-                '&fecha_dev='.$_POST["fecha_dev"].
-                '&estado_libro='.$_POST["estado_libro"],
+                '&fecha_dev='.$_POST["fecha_dev"],
             CURLOPT_HTTPHEADER => array(
-                'Content-Type: application/x-www-form-urlencoded',
                 'Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VPbUt6dlQ2ajJ6aGsvbVZkbnpvd1BSMk5KRlJSa0txOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlTjN4OW82Mk1xVFpTVURtdGV5SmxXVkQ0NVJUQ3NZQw=='
             ),
         ));
@@ -27,28 +25,30 @@
 
         curl_close($curl);
         $data = json_decode($response, true);
-        header("Location: Prestamos.php");
+        //var_dump($data); die;
+        header("Location: Renovacion.php");
     }else{
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
-        CURLOPT_URL => 'https://crai.informaticapp.com/circulacion'.$_GET['idevidencia'],
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_ENCODING => '',
-        CURLOPT_MAXREDIRS => 10,
-        CURLOPT_TIMEOUT => 0,
-        CURLOPT_FOLLOWLOCATION => true,
-        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-        CURLOPT_CUSTOMREQUEST => 'GET',
-        CURLOPT_HTTPHEADER => array(
-            'Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VPbUt6dlQ2ajJ6aGsvbVZkbnpvd1BSMk5KRlJSa0txOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlTjN4OW82Mk1xVFpTVURtdGV5SmxXVkQ0NVJUQ3NZQw=='
-        ),
-        ));
+            CURLOPT_URL => 'https://crai.informaticapp.com/circulacion',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'GET',
+            CURLOPT_HTTPHEADER => array(
+              'Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VPbUt6dlQ2ajJ6aGsvbVZkbnpvd1BSMk5KRlJSa0txOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlTjN4OW82Mk1xVFpTVURtdGV5SmxXVkQ0NVJUQ3NZQw=='
+            ),
+          ));
 
         $response = curl_exec($curl);
 
         curl_close($curl);
         $data = json_decode($response, true);
+        //var_dump($data); die;
 
         $curl = curl_init();
         curl_setopt_array($curl, array(
@@ -135,11 +135,11 @@
                                     <h3 class="text-center mt-4">Editar Categoría</h3>
                                     <div class="container">
                                         <form method="post" class="col-xl-8 offset-2">
-                                            <input type="hidden" name="idevidencia" id="idevidencia" value="<?= $data["Detalles"]['idevidencia'] ?>">
+                                            <input type="hidden" name="idcirculacion" id="idcirculacion" value="<?= $data["Detalle"]['idcirculacion'] ?>">
    
                                             <div class="form-group">
                                                 <label for="id_estudiante">Estudiante:</label>
-                                                <select name="id_estudiante" id="id_estudiante" class="form-control" value="<?= $data["Detalles"]["0"]['idestudiante'] ?>">
+                                                <select name="id_estudiante" id="id_estudiante" class="form-control" value="<?= $data["Detalle"]["0"]['idestudiante'] ?>">
                                                     <?php foreach($est["Detalles"] as $estu): ?>
                                                     <option value="<?= $estu["idestudiante"] ?>"> <?= $estu["nombres"];?></option>
                                                     <?php endforeach ?>
@@ -148,25 +148,25 @@
                                                       
                                             <div class="form-group">
                                                 <label for="id_lib">Libro:</label>
-                                                <select name="id_lib" id="id_lib" class="form-control" value="<?= $data["Detalles"]["0"]['idlibro'] ?>">
+                                                <select name="id_lib" id="id_lib" class="form-control" value="<?= $data["Detalles"]["0"]['id_lib'] ?>">
                                                     <?php foreach($libros["Detalles"] as $lib): ?>
-                                                    <option value="<?= $lib["idlibro"] ?>"> <?= $lib["titulo"];?></option>
+                                                    <option value="<?= $lib["idlibros"] ?>"> <?= $lib["titulo"];?></option>
                                                     <?php endforeach ?>
                                                 </select>
                                             </div>
 
                                             <div class="form-group">
                                                 <label for="fecha_adq">Fecha de Adquisición:</label>
-                                                <input type="date" class="form-control" name="fecha_adq" id="fecha_adq" value="<?= $data["Detalles"]['fecha_adq'] ?>">
+                                                <input type="date" class="form-control" name="fecha_adq" id="fecha_adq" value="<?= $data["Detalles"]["0"]['fecha_adq'] ?>">
                                             </div>
 
                                             <div class="form-group">
                                                 <label for="fecha_dev">Fecha de Devolución:</label>
-                                                <input type="date" class="form-control" name="fecha_dev" id="fecha_dev" value="<?= $data["Detalles"]['fecha_dev'] ?>">
+                                                <input type="date" class="form-control" name="fecha_dev" id="fecha_dev" value="<?= $data["Detalles"]["0"]['fecha_dev'] ?>">
                                             </div>
 
                                             <button type="submit" class="btn btn-success"><i class="fas fa-save"></i> Guardar</button>
-                                            <a href="EvidComp.php" class="btn btn-danger"><i class="fas fa-times"></i> Cancelar</a>
+                                            <a href="Renovacion.php" class="btn btn-danger"><i class="fas fa-times"></i> Cancelar</a>
                                         </form>
                                     </div>
                                     <div class="mb-4"></div>
